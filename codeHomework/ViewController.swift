@@ -11,13 +11,15 @@ class ViewController: UIViewController {
     let myView1: UIView = {
        let view = UIView()
         view.backgroundColor = .orange
-        view.layer.cornerRadius = 350
+        view.layer.cornerRadius = 75
+        view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "square.and.arrow.down")
+        imageView.image = UIImage(systemName: "pencil.slash")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -60,54 +62,46 @@ class ViewController: UIViewController {
     
     private func setupScene() {
         view.addSubview(myView)
-        view.addSubview(myView1)
+        myView.addSubview(myView1)
+        myView.addSubview(imageView)
         view.addSubview(myLabel)
         view.addSubview(myLabel1)
         view.addSubview(myButton)
-        view.addSubview(imageView)
         view.backgroundColor = .black
-//        myView1.layer.cornerRadius = myView1.bounds.width / 2
-//            myView1.layer.masksToBounds = true
+        myView1.layer.cornerRadius = 75
+        myView1.layer.masksToBounds = true
         
     }
     
     private func makeConstraints() {
         NSLayoutConstraint.activate([
-            // Вью
+            // myView constraints
             myView.topAnchor.constraint(equalTo: view.topAnchor),
             myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             myView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500),
             
-            //вью
-            myView1.topAnchor.constraint(equalTo: view.topAnchor),
-            myView1.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            myView1.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            myView1.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -600),
+            // myView1 constraints
+            myView1.centerXAnchor.constraint(equalTo: myView.centerXAnchor),
+            myView1.centerYAnchor.constraint(equalTo: myView.centerYAnchor),
+            myView1.widthAnchor.constraint(equalToConstant: 150),
+            myView1.heightAnchor.constraint(equalToConstant: 150),
             
-            //картинка
-//            myLabel1.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -70),
-//            myLabel1.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
-//            myLabel1.widthAnchor.constraint(equalTo: view.widthAnchor),
-//без понятия почему вью не показывается
+            // imageView constraints
+            imageView.trailingAnchor.constraint(equalTo: myLabel1.leadingAnchor, constant: 10),
+            imageView.centerYAnchor.constraint(equalTo: myLabel1.centerYAnchor),
             
+            // myLabel1 constraints
+            myLabel1.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myLabel1.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20),
+            myLabel1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             
-            
-            //лейбл1
-            myLabel1.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -50),
-            myLabel1.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
-            myLabel1.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
-            
-            
-            //лейбл
+            // myLabel constraints
             myLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             myLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
             myLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             
-            
-            
-            // Кнопка
+            // myButton constraints
             myButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             myButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
