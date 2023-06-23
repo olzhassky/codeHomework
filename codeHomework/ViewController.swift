@@ -47,6 +47,7 @@ class ViewController: UIViewController {
     let myButton: UIButton = {
         let button = UIButton()
         button.setTitle("ТЫК", for: .normal)
+        button.layer.cornerRadius = 15
         button.backgroundColor = .systemBlue
         button.addTarget(ViewController.self, action: #selector(myButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -103,6 +104,7 @@ class ViewController: UIViewController {
             
             // myButton constraints
             myButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myButton.widthAnchor.constraint(equalToConstant: 200),
             myButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
     }
